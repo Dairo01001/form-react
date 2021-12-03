@@ -49,7 +49,13 @@ const Form = () => {
   };
 
   return (
-    <form>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        setInput({ username: "", password: "" });
+        setErrors({ username: "", password: "" });
+      }}
+    >
       <div>
         <label htmlFor="username">Username:</label>
         <input
@@ -61,6 +67,7 @@ const Form = () => {
           placeholder="Username..."
           onChange={handleInputChange}
         />
+        {errors.username && <p>{errors.username}</p>}
       </div>
 
       <div>
@@ -72,7 +79,9 @@ const Form = () => {
           type="password"
           name="password"
           placeholder="Password..."
+          onChange={handleInputChange}
         />
+        {errors.password && <p>{errors.password}</p>}
       </div>
 
       <div>
